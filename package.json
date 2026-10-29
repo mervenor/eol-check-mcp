@@ -1,0 +1,75 @@
+{
+  "name": "eol-check-mcp",
+  "version": "0.1.0",
+  "description": "MCP server that tells an AI assistant whether a project's runtimes and frameworks are still supported, using endoflife.date data bundled for offline use.",
+  "private": true,
+  "license": "MIT",
+  "author": "Mervenor <hello@mervenor.com> (https://mervenor.com)",
+  "homepage": "https://github.com/mervenor/eol-check-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mervenor/eol-check-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mervenor/eol-check-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "end-of-life",
+    "eol",
+    "endoflife.date",
+    "dependencies",
+    "upgrade",
+    "legacy",
+    "dotnet",
+    "angularjs",
+    "nodejs"
+  ],
+  "type": "module",
+  "bin": {
+    "eol-check-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "eval": "tsx eval/run.ts",
+    "snapshot": "tsx scripts/build-snapshot.ts",
+    "check": "npm run lint && npm run typecheck && npm test && npm run eval && npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "semver": "^7.8.5",
+    "smol-toml": "^1.9.1",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^20.19.43",
+    "@types/semver": "^7.8.0",
+    "eslint": "^9.39.5",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^7.3.7",
+    "vitest": "^4.1.12"
+  }
+}
