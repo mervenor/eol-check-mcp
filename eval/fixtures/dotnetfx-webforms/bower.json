@@ -1,0 +1,8 @@
+{
+  "name": "legacy-web",
+  "dependencies": {
+    "jquery": "1.10.2",
+    "angular": "1.5.8",
+    "bootstrap": "3.3.7"
+  }
+}

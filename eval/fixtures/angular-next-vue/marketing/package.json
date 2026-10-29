@@ -1,0 +1,8 @@
+{
+  "name": "marketing-site",
+  "private": true,
+  "dependencies": {
+    "vue": "^2.6.14",
+    "vue-router": "^3.5.1"
+  }
+}

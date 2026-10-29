@@ -1,0 +1,23 @@
+{
+  "name": "client-portal",
+  "version": "2.4.0",
+  "private": true,
+  "scripts": {
+    "build": "gulp build",
+    "test": "karma start"
+  },
+  "dependencies": {
+    "angular": "~1.6.4",
+    "angular-route": "~1.6.4",
+    "angular-sanitize": "~1.6.4",
+    "jquery": "^2.2.4",
+    "bootstrap": "^3.3.7"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "karma": "^1.7.0"
+  },
+  "engines": {
+    "node": ">=8"
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "description": "Evaluation set for eol-check-mcp. Each case names the tool an assistant should call for a question, the arguments, and the key facts the answer must contain. The runner checks them against the bundled snapshot with a fixed date; no language model is involved.",
+  "today": "2026-10-28",
+  "cases": [
+    {
+      "id": "dotnet-8-days-left",
+      "question": "Is .NET 8 still supported, and for how long?",
+      "tool": "check_version",
+      "args": { "product": ".NET", "version": "8" },
+      "expect": {
+        "status": "supported",
+        "cycle.securitySupportEnds": "2026-11-10",
+        "cycle.daysRemaining": 13,
+        "urgency": "high",
+        "recommendedUpgrade.cycle": "10",
+        "summaryContains": ["10 November 2026", "13 days left"]
+      }
+    },
+    {
+      "id": "dotnet-9-same-day",
+      "question": "When does .NET 9 support end?",
+      "tool": "check_version",
+      "args": { "product": "dotnet", "version": "9.0.4" },
+      "expect": { "status": "supported", "cycle.securitySupportEnds": "2026-11-10", "cycle.lts": false }
+    },
+    {
+      "id": "dotnet-8-after-deadline",
+      "question": "Will net8.0 still be supported on 11 November 2026?",
+      "tool": "check_version",
+      "args": { "product": "dotnet", "version": "net8.0", "date": "2026-11-11" },
+      "expect": { "status": "end-of-life", "cycle.daysOverdue": 1, "urgency": "critical" }
+    },
+    {
+      "id": "dotnet-8-last-day",
+      "question": "Is .NET 8 supported on 10 November 2026 itself?",
+      "tool": "check_version",
+      "args": { "product": "dotnet", "version": "8", "date": "2026-11-10" },
+      "expect": { "status": "supported", "cycle.daysRemaining": 0, "summaryContains": ["last day of support"] }
+    },
+    {
+      "id": "angularjs-eol",
+      "question": "Is AngularJS 1.8 still supported?",
+      "tool": "check_version",
+      "args": { "product": "angularjs", "version": "1.8.3" },
+      "expect": {
+        "status": "end-of-life",
+        "cycle.securitySupportEnds": "2021-12-31",
+        "cycle.daysOverdue": 1762,
+        "successor.product": "angular",
+        "summaryContains": ["31 December 2021"]
+      }
+    },
+    {
+      "id": "dotnetfx-48-no-end-date",
+      "question": "Is .NET Framework 4.8 (net48) supported?",
+      "tool": "check_version",
+      "args": { "product": "dotnetfx", "version": "net48" },
+      "expect": { "status": "supported", "cycle.cycle": "4.8", "cycle.securitySupportEnds": null, "summaryContains": ["no end date is published"] }
+    },
+    {
+      "id": "dotnetfx-462-ending",
+      "question": "When does .NET Framework 4.6.2 lose support?",
+      "tool": "check_version",
+      "args": { "product": ".NET Framework", "version": "4.6.2" },
+      "expect": { "status": "supported", "cycle.securitySupportEnds": "2027-01-12", "cycle.daysRemaining": 76, "urgency": "high" }
+    },
+    {
+      "id": "node-hydrogen",
+      "question": "Our .nvmrc says lts/hydrogen. Is that still supported?",
+      "tool": "check_version",
+      "args": { "product": "node", "version": "lts/hydrogen" },
+      "expect": { "status": "end-of-life", "cycle.cycle": "18", "cycle.securitySupportEnds": "2025-04-30" }
+    },
+    {
+      "id": "node-22-security-only",
+      "question": "What is the status of Node.js 22?",
+      "tool": "check_version",
+      "args": { "product": "nodejs", "version": "22.11.0" },
+      "expect": { "status": "security-only", "cycle.securitySupportEnds": "2027-04-30", "cycle.activeSupportEnds": "2025-10-21" }
+    },
+    {
+      "id": "python-39-eol",
+      "question": "Is Python 3.9 end of life?",
+      "tool": "check_version",
+      "args": { "product": "python", "version": "3.9.18" },
+      "expect": { "status": "end-of-life", "cycle.securitySupportEnds": "2025-10-31" }
+    },
+    {
+      "id": "django-32-eol",
+      "question": "We run Django 3.2.18. Supported?",
+      "tool": "check_version",
+      "args": { "product": "django", "version": "3.2.18" },
+      "expect": { "status": "end-of-life", "cycle.securitySupportEnds": "2024-04-01", "recommendedUpgrade.cycle": "5.2" }
+    },
+    {
+      "id": "mysql-ambiguous",
+      "question": "Is MySQL 8 supported?",
+      "tool": "check_version",
+      "args": { "product": "mysql", "version": "8" },
+      "expect": { "status": "unknown", "candidatesInclude": ["8.0", "8.4"] }
+    },
+    {
+      "id": "product-typo",
+      "question": "Check postgress 12.",
+      "tool": "check_version",
+      "args": { "product": "postgress", "version": "12" },
+      "expect": { "found": false, "suggestionsInclude": ["postgresql"] }
+    },
+    {
+      "id": "cycles-dotnet",
+      "question": "Show me the .NET release schedule.",
+      "tool": "get_cycles",
+      "args": { "product": "dotnet" },
+      "expect": { "found": true, "recommendedUpgrade.cycle": "10", "cyclesInclude": [{ "cycle": "8", "securitySupportEnds": "2026-11-10" }, { "cycle": "6", "status": "end-of-life" }] }
+    },
+    {
+      "id": "list-dotnet-products",
+      "question": "Which .NET products does the data cover?",
+      "tool": "list_products",
+      "args": { "query": "net" },
+      "expect": { "productsInclude": ["dotnet", "dotnetfx"] }
+    },
+    {
+      "id": "scan-legacy-dotnet-angularjs",
+      "question": "Here are our project files. What should we upgrade first?",
+      "tool": "scan_project",
+      "fixture": "legacy-dotnet-angularjs",
+      "expect": {
+        "first.product": "angularjs",
+        "findingsInclude": [
+          { "product": "angularjs", "status": "end-of-life" },
+          { "product": "dotnet", "cycle": "6", "status": "end-of-life", "component": "ASP.NET Core" },
+          { "product": "nodejs", "cycle": "12", "status": "end-of-life" }
+        ],
+        "summaryContains": ["past end of life", "Upgrade AngularJS 1.6 first"]
+      }
+    },
+    {
+      "id": "scan-node-react-lockfile",
+      "question": "Is our Next.js storefront on supported versions?",
+      "tool": "scan_project",
+      "fixture": "node-react",
+      "expect": {
+        "findingsInclude": [
+          { "product": "nextjs", "cycle": "13", "version": "13.5.6", "precision": "exact", "status": "end-of-life" },
+          { "product": "nodejs", "cycle": "18", "status": "end-of-life" },
+          { "product": "react", "cycle": "18", "status": "security-only" }
+        ],
+        "findingsExclude": [{ "product": "react", "cycle": "16" }]
+      }
+    },
+    {
+      "id": "scan-python-django",
+      "question": "Check our Django service and its databases.",
+      "tool": "scan_project",
+      "fixture": "python-django",
+      "expect": {
+        "findingsInclude": [
+          { "product": "django", "cycle": "3.2", "status": "end-of-life" },
+          { "product": "python", "cycle": "3.8", "status": "end-of-life" },
+          { "product": "postgresql", "cycle": "11", "status": "end-of-life" },
+          { "product": "mysql", "cycle": "5.7", "status": "end-of-life" }
+        ],
+        "notesContain": ["redis:latest"]
+      }
+    },
+    {
+      "id": "scan-dotnet-8-9-props",
+      "question": "Our services target .NET 8 and 9 via Directory.Build.props. Anything urgent?",
+      "tool": "scan_project",
+      "fixture": "directory-props",
+      "expect": {
+        "first.product": "dotnet",
+        "findingsInclude": [
+          { "product": "dotnet", "cycle": "8", "status": "supported", "urgency": "high", "securitySupportEnds": "2026-11-10" },
+          { "product": "dotnet", "cycle": "9", "status": "supported", "urgency": "high", "securitySupportEnds": "2026-11-10" },
+          { "product": "postgresql", "cycle": "16", "status": "supported" },
+          { "product": "mysql", "cycle": "8.4", "precision": "floating" }
+        ],
+        "summaryContains": ["within 90 days", "10 November 2026"]
+      }
+    },
+    {
+      "id": "scan-angular-vue",
+      "question": "We have an Angular admin and a Vue marketing site. Status?",
+      "tool": "scan_project",
+      "fixture": "angular-next-vue",
+      "expect": {
+        "findingsInclude": [
+          { "product": "angular", "cycle": "15", "status": "end-of-life" },
+          { "product": "vue", "cycle": "2.6", "status": "end-of-life" }
+        ],
+        "findingsExclude": [{ "product": "angularjs" }]
+      }
+    },
+    {
+      "id": "scan-dotnetfx-mvc",
+      "question": "Old ASP.NET MVC app on .NET Framework with bower. What is out of support?",
+      "tool": "scan_project",
+      "fixture": "dotnetfx-webforms",
+      "expect": {
+        "findingsInclude": [
+          { "product": "dotnetfx", "cycle": "4.5.2", "status": "end-of-life", "component": "ASP.NET (MVC / Web API)" },
+          { "product": "angularjs", "cycle": "1.5", "status": "end-of-life" }
+        ],
+        "summaryContains": ["past end of life"]
+      }
+    },
+    {
+      "id": "scan-modern-stack",
+      "question": "Is our new stack all right?",
+      "tool": "scan_project",
+      "fixture": "modern-stack",
+      "expect": {
+        "countsEndOfLife": 0,
+        "findingsInclude": [
+          { "product": "dotnet", "cycle": "10", "status": "supported", "component": "ASP.NET Core" },
+          { "product": "nextjs", "cycle": "16", "status": "supported" },
+          { "product": "react", "cycle": "19", "status": "supported" },
+          { "product": "nodejs", "cycle": "24" }
+        ],
+        "summaryContains": ["Nothing is urgent, but plan to upgrade Node.js 24"]
+      }
+    },
+    {
+      "id": "scan-inline-global-json",
+      "question": "Our global.json pins SDK 7.0.410. Is that a problem?",
+      "tool": "scan_project",
+      "files": [{ "path": "global.json", "content": "{ \"sdk\": { \"version\": \"7.0.410\" } }" }],
+      "expect": { "findingsInclude": [{ "product": "dotnet", "cycle": "7", "status": "end-of-life", "securitySupportEnds": "2024-05-14" }] }
+    },
+    {
+      "id": "scan-inline-unsupported-file",
+      "question": "Can you check our Gemfile?",
+      "tool": "scan_project",
+      "files": [{ "path": "Gemfile", "content": "source 'https://rubygems.org'\ngem 'rails', '~> 6.1'\n" }],
+      "expect": { "findingsCount": 0, "notesContain": ["not a file type we read"] }
+    }
+  ]
+}
