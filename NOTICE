@@ -1,0 +1,54 @@
+eol-check-mcp
+Copyright (c) 2026 Mervenor. Licensed under the MIT License (see LICENSE).
+
+-------------------------------------------------------------------------------
+Bundled data: data/snapshot.json
+-------------------------------------------------------------------------------
+
+The release-cycle and support data in data/snapshot.json (and in any snapshot
+written by the "refresh" command) comes from endoflife.date
+(https://endoflife.date), a community project that documents end-of-life dates
+and support lifecycles.
+
+  Source:          endoflife.date API v1, https://endoflife.date/api/v1/products/full
+  Downloaded:      28 October 2026 (API generated_at 2026-10-28T21:19:50+00:00)
+  Upstream commit: 794ba970f0e122feb390dc7e58b44522ed8b1754 of
+                   https://github.com/endoflife-date/endoflife.date
+                   (cross-checked against products/*.md front matter at that
+                   commit: identical support dates for all 487 products)
+  Changes:         trimmed to the fields this server needs (cycle, label,
+                   codename, release date, LTS, end of active / security /
+                   extended support, discontinued, latest version) and
+                   re-serialised. Product descriptions are not included.
+
+endoflife.date is released under the MIT License, reproduced below as
+published in the upstream repository
+(https://github.com/endoflife-date/endoflife.date/blob/master/LICENSE):
+
+  Copyright 2020 endoflife.date contributors
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+
+endoflife.date gathers its dates from vendors' published support policies.
+Neither endoflife.date nor Mervenor guarantees that any date is correct or
+current; check the vendor's own policy before making support decisions.
+
+eol-check-mcp is not affiliated with or endorsed by endoflife.date or by any
+vendor whose products appear in the data. Product names are trademarks of
+their respective owners.
