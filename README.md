@@ -49,6 +49,8 @@ Registry as `com.mervenor/eol-check-mcp`, so an MCP client can run it with no cl
 }
 ```
 
+In Claude Code: `claude mcp add eol-check -- npx -y eol-check-mcp`.
+
 To build it from source instead:
 
 ```sh

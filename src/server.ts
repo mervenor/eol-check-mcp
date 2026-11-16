@@ -11,7 +11,7 @@ import { scanProject, SUPPORTED_FILES } from './scan/index.js';
 import type { Snapshot } from './types.js';
 
 export const SERVER_NAME = 'eol-check-mcp';
-export const SERVER_VERSION = '0.1.1';
+export const SERVER_VERSION = '0.1.2';
 
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false } as const;
 
