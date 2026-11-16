@@ -4,6 +4,22 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- The server reported its version as 0.1.0 in the published 0.1.1 package (`SERVER_VERSION` was not bumped). Fixed in source; the next release carries it.
+
+### Changed
+
+- README: install from npm with `npx -y eol-check-mcp`; building from source stays as an option.
+
+## [0.1.1] - 2026-11-16
+
+### Changed
+
+- Package metadata: published to npm and listed in the official MCP Registry as `com.mervenor/eol-check-mcp` (`mcpName` in `package.json`, `server.json` added). No change to the server's behaviour.
+
 ## [0.1.0] - 2026-10-29
 
 First release, built and tested locally. Not yet published to npm.

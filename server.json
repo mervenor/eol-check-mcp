@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.mervenor/eol-check-mcp",
+  "title": "End-of-life check",
+  "description": "Tells an AI assistant whether a project's runtimes and frameworks are still supported.",
+  "repository": {
+    "url": "https://github.com/mervenor/eol-check-mcp",
+    "source": "github"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "eol-check-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

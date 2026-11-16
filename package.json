@@ -1,8 +1,8 @@
 {
   "name": "eol-check-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "com.mervenor/eol-check-mcp",
   "description": "MCP server that tells an AI assistant whether a project's runtimes and frameworks are still supported, using endoflife.date data bundled for offline use.",
-  "private": true,
   "license": "MIT",
   "author": "Mervenor <hello@mervenor.com> (https://mervenor.com)",
   "homepage": "https://github.com/mervenor/eol-check-mcp#readme",

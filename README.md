@@ -34,7 +34,22 @@ That is real output from the bundled data, with the date fixed to 28 October 202
 
 ## Install
 
-You need Node.js 20 or later. The package is not on npm yet, so build it from source:
+You need Node.js 20 or later. The package is on npm as
+[`eol-check-mcp`](https://www.npmjs.com/package/eol-check-mcp) and listed in the official MCP
+Registry as `com.mervenor/eol-check-mcp`, so an MCP client can run it with no clone:
+
+```json
+{
+  "mcpServers": {
+    "eol-check": {
+      "command": "npx",
+      "args": ["-y", "eol-check-mcp"]
+    }
+  }
+}
+```
+
+To build it from source instead:
 
 ```sh
 git clone https://github.com/mervenor/eol-check-mcp.git
